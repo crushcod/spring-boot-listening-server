@@ -22,7 +22,9 @@ logging:
     name: server.log
     path: /opt
     max-file-size: 200MB
-    max-history: 30
+  logback:
+    rollingpolicy:
+      max-history: 30
   level:
     org:
       springframework.*: info
