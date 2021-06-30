@@ -1,0 +1,45 @@
+info:
+  app:
+    name: '@project.name@'
+    version: '@project.version@'
+#local profile
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+
+#Server configuration
+server:
+  port: 8080
+  servlet:
+    context-path: /listening-server
+
+#WebClient
+webClient:
+  timeout: 1000
+
+#LOGGING CONFIGURATIONS
+debug: true
+logging:
+  file:
+    name: server.log
+    path: /opt
+    max-file-size: 200MB
+    max-history: 30
+  level:
+    org:
+      springframework.*: info
+    com:
+      crushoncod.*: info
+  pattern:
+    console: '%clr(%d{${LOG_DATEFORMAT_PATTERN:-dd-MM-yyyy HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(%X{UUID}){yellow} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:%4L) %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}'
+    file: '%clr(%d{${LOG_DATEFORMAT_PATTERN:-dd-MM-yyyy HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(%X{UUID}){yellow} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:%4L) %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}'
+
+#Rules
+rule:
+  skip-request-validation: true
